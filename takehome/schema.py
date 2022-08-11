@@ -4,16 +4,12 @@ from pydantic import BaseModel, Field, EmailStr
 
 
 class Registration(BaseModel):
- 
     firstName: str 
     lastName: str 
     password: str
     email: EmailStr
 
-
-
 class Login(BaseModel):
-  
     password:str = Field(...) 
     email: EmailStr
 
