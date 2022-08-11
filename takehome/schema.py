@@ -1,12 +1,13 @@
+from typing import Optional
 from pydantic import BaseModel, Field, EmailStr
 
 
 
 class Registration(BaseModel):
  
-    firstName: str = Field(..., max_length=50, min_length=1)
-    lastName: str = Field(..., max_length=50, min_length=1)
-    password: int = Field(..., ge=0, le=10)
+    firstName: str 
+    lastName: str 
+    password: str
     email: EmailStr
 
 
@@ -21,3 +22,9 @@ class Template(BaseModel):
     template_name: str = Field(..., max_length=50)
     body: str = Field(..., max_length=500)
     subject: str = Field(..., max_length=500)
+
+
+class UpdateTemplate(BaseModel):
+    template_name: Optional[str] = None
+    body: Optional[str] = None
+    subject: Optional[str] = None
