@@ -1,6 +1,6 @@
 
 from crypt import methods
-from takehome import app, db, mongodb_client
+from takehome import app, db
 from flask import request
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -26,7 +26,7 @@ def not_found(error=None):
 
     return resp
 
-@app.route('/register', methods=('POST'))
+@app.route('/register', methods='POST')
 def register(data: Registration):
 	_firstName = data.firstName
 	_lastName = data.lastName
@@ -86,7 +86,7 @@ def get_template_all():
 
 @app.route("/template", methods="POST")
 def create_template(data: Template):
-	mydb = mongodb_client["user"]
+	mydb = db["user"]
 	mycol = mydb["user"]
 	mydict = { 
 		"template_name": data.template_name, 
