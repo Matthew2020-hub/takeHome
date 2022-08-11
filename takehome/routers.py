@@ -151,4 +151,3 @@ def delete_template(current_user, template_id):
 	resp.status_code = 200
 	return resp
 		
-

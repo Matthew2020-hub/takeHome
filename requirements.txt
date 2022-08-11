@@ -16,3 +16,6 @@ six==1.16.0
 typing_extensions==4.3.0
 Werkzeug==2.2.2
 zipp==3.8.1
+gunicorn==20.1.0
+h11==0.12.0
+heroku==0.1.4
