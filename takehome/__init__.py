@@ -8,8 +8,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 
 mongodb_client = PyMongo(app)
 db = mongodb_client.db
-from takehome import auth
-
+from routers import *
 
 
 if __name__ == "__main__":

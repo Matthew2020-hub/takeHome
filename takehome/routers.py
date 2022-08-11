@@ -1,6 +1,5 @@
 
-from crypt import methods
-from takehome import app, db
+from __init__ import app, db
 from flask import request
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -26,7 +25,7 @@ def not_found(error=None):
 
     return resp
 
-@app.route('/register', methods='POST')
+@app.route('/register', methods=['POST'])
 def register(data: Registration):
 	_firstName = data.firstName
 	_lastName = data.lastName
@@ -53,7 +52,7 @@ def register(data: Registration):
 		resp.status_code = 400
 		return resp
 
-@app.route("/login", methods=["post"])
+@app.route("/login", methods=["POST"])
 def login(data: Login):
 	user_from_db = db.users.find_one({'email': data.email})  # search for user in database
 	if user_from_db:
@@ -78,13 +77,13 @@ def login(data: Login):
 			{'WWW-Authenticate' : 'Basic realm ="Wrong Password !!"'}
 		)
 
-@app.route('/template', methods="GET")
+@app.route('/template', methods=["GET"])
 def get_template_all():
 	users = db.template.find()
 	resp = dumps(users)
 	return resp
 
-@app.route("/template", methods="POST")
+@app.route("/template", methods=["POST"])
 def create_template(data: Template):
 	mydb = db["user"]
 	mycol = mydb["user"]
@@ -98,7 +97,7 @@ def create_template(data: Template):
 
 
 
-@app.route('/template/<template_id>', methods="GET")
+@app.route('/template/<template_id>', methods=["GET"])
 def get_template(template_id):
 	user = db.user.find_one({'template_id': ObjectId(template_id)})
 	resp = dumps(user)
