@@ -7,7 +7,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from schema import Login, Registration, Template,UpdateTemplate
 import jwt
 from datetime import datetime, timedelta
-import uuid 
 from flask_pydantic import validate
 from auth import token_required
 import json
