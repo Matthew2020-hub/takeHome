@@ -11,11 +11,7 @@ import uuid
 from flask_pydantic import validate
 from auth import token_required
 import json
-
-
-
-
-app.config['SECRET_KEY'] = 'r3fit450gjgt5otrgi5t0rjidjkgtrotrpeai;9ropetiporjerutwo'
+from config import SECRET_KEY
 
 
 @app.errorhandler(404)
@@ -67,7 +63,7 @@ def login(body: Login):
 			token = jwt.encode({
 				'public_id': str(user_from_db["_id"]),
 				'exp' : datetime.utcnow() + timedelta(minutes = 30)
-			}, app.config['SECRET_KEY'], algorithm="HS256")
+			}, SECRET_KEY, algorithm="HS256")
 	
 			res = jsonify({'token' : token})
 			res.status_code=(200)

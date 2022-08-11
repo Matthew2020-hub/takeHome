@@ -3,6 +3,7 @@ import jwt
 from flask import request, abort
 from __init__ import app, db
 from bson.objectid import ObjectId
+from config import SECRET_KEY
 
 def token_required(f):
     @wraps(f)
@@ -17,7 +18,7 @@ def token_required(f):
                 "error": "Unauthorized"
             }, 401
         try:
-            data=jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
+            data=jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
             current_user=db.user.find_one({"_id": ObjectId(data["public_id"])})
             if current_user is None:
                 return {
